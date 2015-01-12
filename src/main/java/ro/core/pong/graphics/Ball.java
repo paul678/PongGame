@@ -39,7 +39,7 @@ public class Ball extends GraphicObject{
     }
 
     @Override
-    public void update(long deltaTime) {
+    public void update(double deltaTime) {
         double distanceTravelled = mSpeed * deltaTime;
         double deltaX = distanceTravelled * Math.cos(mAngle);
         double deltaY = distanceTravelled * Math.sin(mAngle);

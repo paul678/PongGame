@@ -31,6 +31,10 @@ public class PongPlayer implements Interactable {
         mControlMap.put(InteractDirection.DOWN, KeyCode.S);
     }
 
+    public void update(double deltaTime) {
+        mPlayerPaddle.update(deltaTime);
+    }
+
     @Override
     public void goDown() {
         if(mPlayerPaddle.getMovement() == InteractDirection.NONE) {

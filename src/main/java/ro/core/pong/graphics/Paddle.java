@@ -29,7 +29,7 @@ public class Paddle extends GraphicObject {
     }
 
     @Override
-    public void update(long deltaTime) {
+    public void update(double deltaTime) {
         if (mMovement == InteractDirection.DOWN) {
             setY(getY() + mSpeed * deltaTime);
         } else if (mMovement == InteractDirection.UP) {

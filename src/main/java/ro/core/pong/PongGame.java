@@ -70,6 +70,9 @@ public class PongGame {
         }
 
         //update objects
+        mPlayer.update(deltaTime);
+        mOpponent.update(deltaTime);
+        mBall.update(deltaTime);
     }
 
     public State getGameState() {

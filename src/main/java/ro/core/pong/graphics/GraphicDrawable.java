@@ -15,5 +15,5 @@ public interface GraphicDrawable {
     double getX();
     void setX(double x);
 
-    void update(long deltaTime);
+    void update(double deltaTime);
 }
