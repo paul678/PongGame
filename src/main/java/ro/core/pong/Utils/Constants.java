@@ -15,8 +15,8 @@ public class Constants {
      * Total size of the game, including margins. This size is fixed but the game will be scaled to
      * fill the available space.
      */
-    public static final double WIDTH = 568;
-    public static final double HEIGHT = 320;
+    public static final double WIDTH = 800;
+    public static final double HEIGHT = 400;
 
     /*
      * Size of the margins around the playing field.
@@ -53,7 +53,7 @@ public class Constants {
      * Initial speed of the ball. This speed is negative, so the ball moves towards the player by
      * default.
      */
-    public static final double BALL_INITIAL_SPEED = -200;
+    public static final double BALL_INITIAL_SPEED = -250;
 
     /*
      * The speed of the ball is multiplied by this factor every time the ball hits a paddle. This
@@ -64,7 +64,7 @@ public class Constants {
     /*
      * The maximum speed of the ball, in any direction.
      */
-    public static final double BALL_MAX_SPEED = 600;
+    public static final double BALL_MAX_SPEED = 650;
 
     /* --- Paddle --- */
 

@@ -2,27 +2,40 @@ package ro.core.pong.gameControls;
 
 import javafx.scene.input.KeyCode;
 
+import java.util.ArrayList;
+
 /**
  * Created by Paul Berbec.
  */
 public class PlayerControlHandler extends KeyboardEventHandler {
-    Interactable mPlayer;
+    private static PlayerControlHandler mInstance = new PlayerControlHandler();
+    ArrayList<Interactable> mPlayerList;
 
-    public PlayerControlHandler(Interactable player) {
-        mPlayer = player;
+    public static PlayerControlHandler getInstance() {
+        return mInstance;
+    }
+    private PlayerControlHandler() {
+        mPlayerList = new ArrayList<>();
+    }
+
+    public void addPlayer(Interactable player) {
+        mPlayerList.add(player);
     }
 
     @Override
     protected void handleKeyUp(KeyCode code) {
-        mPlayer.stop();
+        mPlayerList.stream().filter(player -> !player.ignoreKeyCode(code)).forEach(Interactable::stop);
     }
 
     @Override
     protected void handleKeyDown(KeyCode code) {
-        if(code.equals(mPlayer.getActionKeyCode(InteractDirection.UP))) {
-            mPlayer.goUp();
-        } else if(code.equals(mPlayer.getActionKeyCode(InteractDirection.DOWN))) {
-            mPlayer.goDown();
+        for (Interactable player : mPlayerList) {
+            if (code.equals(player.getActionKeyCode(InteractDirection.UP))) {
+                player.goUp();
+            } else if (code.equals(player.getActionKeyCode(InteractDirection.DOWN))) {
+                player.goDown();
+
+            }
         }
     }
 }

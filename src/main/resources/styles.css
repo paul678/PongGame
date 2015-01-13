@@ -11,13 +11,13 @@
 
 .header, .info, .score
 {
-    -fx-font-family: 'Arcade Normal';
+    -fx-font-family: "Courier New";
     -fx-text-origin: top;
 }
 
 .header
 {
-    -fx-font-size: 48px;
+    -fx-font-size: 64px;
 }
 
 .info
@@ -29,4 +29,11 @@
 .score
 {
     -fx-font-size: 32px;
+}
+
+.separator
+{
+    -fx-background-color: azure;
+    -fx-fill: azure;
+    -fx-stroke: aqua;
 }

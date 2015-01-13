@@ -33,7 +33,7 @@ public class NewGameScreen extends Pane {
         });
         header.getStyleClass().add("header");
 
-        Text info = new Text("use the arrow keys to move\npress p to pause\n\npress enter to start\npress escape to quit");
+        Text info = new Text("Player 1: use the W(up) and S(down) keys to move\nPlayer 2: use arrow keys to move\n\npress enter to start\npress escape to quit");
         info.boundsInLocalProperty().addListener(observable ->
         {
             /*

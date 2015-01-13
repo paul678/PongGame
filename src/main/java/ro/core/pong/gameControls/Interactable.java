@@ -10,5 +10,5 @@ public interface Interactable {
     void goUp();
     void stop();
     KeyCode getActionKeyCode(InteractDirection action);
-    void initControlMap();
+    boolean ignoreKeyCode(KeyCode code);
 }

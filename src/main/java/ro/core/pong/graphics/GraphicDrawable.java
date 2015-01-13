@@ -5,15 +5,10 @@ import javafx.beans.property.DoubleProperty;
 /**
  * Created by Paul Berbec.
  */
-public interface GraphicDrawable {
+public interface GraphicDrawable extends PlanarObject{
 
     DoubleProperty getYProp();
-    double getY();
-    void setY(double y);
-
     DoubleProperty getXProp();
-    double getX();
-    void setX(double x);
 
     void update(double deltaTime);
 }

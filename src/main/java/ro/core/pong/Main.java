@@ -10,7 +10,7 @@ import javafx.scene.transform.Scale;
 import javafx.scene.transform.Transform;
 import javafx.stage.Stage;
 import ro.core.pong.gameScenes.GameOverScreen;
-import ro.core.pong.gameScenes.GameScreen;
+import ro.core.pong.gameScenes.InGameScreen;
 import ro.core.pong.gameScenes.NewGameScreen;
 
 import static ro.core.pong.Utils.Constants.*;
@@ -23,7 +23,7 @@ public class Main extends Application {
         PongGame game = new PongGame(WINNING_SCORE);
 
         Group content = new Group();
-        GameScreen gameScreen = new GameScreen(game);
+        InGameScreen inGameScreen = new InGameScreen(game);
         NewGameScreen welcomeScreen = new NewGameScreen();
         GameOverScreen endScreen = new GameOverScreen();
         content.getChildren().add(welcomeScreen);
@@ -34,8 +34,8 @@ public class Main extends Application {
         welcomeScreen.setOnStart(() ->
         {
             content.getChildren().clear();
-            content.getChildren().add(gameScreen);
-            gameScreen.requestFocus();
+            content.getChildren().add(inGameScreen);
+            inGameScreen.requestFocus();
             game.start();
         });
 /*        game.setOnGameEnd(() ->
@@ -48,8 +48,8 @@ public class Main extends Application {
         endScreen.setOnRestart(() ->
         {
             content.getChildren().clear();
-            content.getChildren().add(gameScreen);
-            gameScreen.requestFocus();
+            content.getChildren().add(inGameScreen);
+            inGameScreen.requestFocus();
             game.start();
         });
 

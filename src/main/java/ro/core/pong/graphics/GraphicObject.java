@@ -2,12 +2,15 @@ package ro.core.pong.graphics;
 
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
+import javafx.scene.shape.Rectangle;
 
 /**
  * Abstract base class for all visible graphical objects
  * Created by Paul Berbec.
  */
 public abstract class GraphicObject implements GraphicDrawable {
+
+    protected Rectangle mShape = new Rectangle();
 
       /* --- Position --- */
 
@@ -50,4 +53,18 @@ public abstract class GraphicObject implements GraphicDrawable {
         this.y.set(y);
     }
 
+    @Override
+    public Rectangle getShape() {
+        return mShape;
+    }
+
+    @Override
+    public double getHeight() {
+        return mShape.getHeight();
+    }
+
+    @Override
+    public double getWidth() {
+        return mShape.getWidth();
+    }
 }

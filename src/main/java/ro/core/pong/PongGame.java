@@ -1,7 +1,10 @@
 package ro.core.pong;
 
 import javafx.animation.AnimationTimer;
+import ro.core.pong.Utils.CollisionDetector;
+import ro.core.pong.gameControls.ComputerAI;
 import ro.core.pong.gameControls.InteractDirection;
+import ro.core.pong.gameControls.PlayerControlHandler;
 import ro.core.pong.graphics.Ball;
 
 import java.util.Random;
@@ -17,35 +20,57 @@ public class PongGame {
     {
         PLAYING, PAUSED, ENDED;
     }
+    public static final boolean USE_AI = true;
 
     private final GameLoop loop = new GameLoop();
     private State mGameState = State.ENDED;
     private static final Random mRandom = new Random();
     private final int mWinningScore;
 
-    private PongPlayer mPlayer = new PongPlayer("Player", PLAYER_PADDLE_SPEED);
-    private PongPlayer mOpponent = new PongPlayer("Opponent", OPPONENT_PADDLE_SPEED);
+    private PlayerControlHandler mControlHandler = PlayerControlHandler.getInstance();
+    private CollisionDetector mCollisionDetector = CollisionDetector.getInstance();
+    private ComputerAI mComputerAI;
+
+    private PongPlayer mPlayer = new PongPlayer(PlayerType.PLAYER_LEFT, PLAYER_PADDLE_SPEED);
+    private PongPlayer mOpponent = new PongPlayer(PlayerType.PLAYER_RIGHT, PLAYER_PADDLE_SPEED);
     private final Ball mBall = new Ball(BALL_MAX_SPEED);
 
     public PongGame(int maxScore)
     {
         this.mWinningScore = maxScore;
+        initControlHandler();
+        initCollisionDetector();
         loop.start();
+    }
+
+    private void initControlHandler() {
+        mControlHandler.addPlayer(mPlayer);
+        if(!USE_AI) {
+            mControlHandler.addPlayer(mOpponent);
+        }else {
+            mComputerAI = new ComputerAI(mOpponent, mBall);
+        }
+    }
+
+    private void initCollisionDetector() {
+        mCollisionDetector.addObject(mPlayer);
+        mCollisionDetector.addObject(mOpponent);
+        mCollisionDetector.addObject(mBall);
     }
 
     public void start()
     {
-        mPlayer.getPaddle().setX(MARGIN_LEFT_RIGHT + GOAL_WIDTH - PADDLE_WIDTH); /* Aligned with the goal area. */
-        mPlayer.getPaddle().setY((HEIGHT - PADDLE_HEIGHT) / 2); /* Centered. */
+        mPlayer.setX(MARGIN_LEFT_RIGHT + GOAL_WIDTH - PADDLE_WIDTH); /* Aligned with the goal area. */
+        mPlayer.setY((HEIGHT - PADDLE_HEIGHT) / 2); /* Centered. */
 
-        mOpponent.getPaddle().setX(WIDTH - MARGIN_LEFT_RIGHT - GOAL_WIDTH); /* Aligned with the goal area. */
-        mOpponent.getPaddle().setY((HEIGHT - PADDLE_HEIGHT) / 2); /* Centered. */
+        mOpponent.setX(WIDTH - MARGIN_LEFT_RIGHT - GOAL_WIDTH); /* Aligned with the goal area. */
+        mOpponent.setY((HEIGHT - PADDLE_HEIGHT) / 2); /* Centered. */
 
         mPlayer.setScore(0);
         mOpponent.setScore(0);
 
-        mPlayer.getPaddle().setMovement(InteractDirection.NONE);
-        mOpponent.getPaddle().setMovement(InteractDirection.NONE);
+        mPlayer.setMovement(InteractDirection.NONE);
+        mOpponent.setMovement(InteractDirection.NONE);
 
         launchBall();
 
@@ -73,6 +98,13 @@ public class PongGame {
         mPlayer.update(deltaTime);
         mOpponent.update(deltaTime);
         mBall.update(deltaTime);
+        if(USE_AI) {
+            mComputerAI.update(deltaTime);
+        }
+        if(mCollisionDetector.runCollisionChecks()) {
+            //reset ball on any scored goal
+            launchBall();
+        }
     }
 
     public State getGameState() {
@@ -89,6 +121,10 @@ public class PongGame {
 
     public PongPlayer getOpponent() {
         return mOpponent;
+    }
+
+    public PlayerControlHandler getControlHandler() {
+        return mControlHandler;
     }
 
     private class GameLoop extends AnimationTimer {

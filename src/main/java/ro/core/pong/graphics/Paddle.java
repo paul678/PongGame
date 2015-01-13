@@ -2,6 +2,9 @@ package ro.core.pong.graphics;
 
 import ro.core.pong.gameControls.InteractDirection;
 
+import static ro.core.pong.Utils.Constants.PADDLE_HEIGHT;
+import static ro.core.pong.Utils.Constants.PADDLE_WIDTH;
+
 /**
  * Created by Paul Berbec.
  */
@@ -14,6 +17,11 @@ public class Paddle extends GraphicObject {
     public Paddle(double speed)
     {
         this.mSpeed = speed;
+        mShape.setWidth(PADDLE_WIDTH);
+        mShape.setHeight(PADDLE_HEIGHT);
+        mShape.translateXProperty().bind(getXProp());
+        mShape.translateYProperty().bind(getYProp());
+        mShape.getStyleClass().add("paddle");
     }
 
     public double getSpeed() {
