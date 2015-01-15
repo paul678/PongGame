@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>ro.core.pong</OriginalElement>
+  <nodes>
+    <node x="-87.80273920078287" y="1466.4237583598797">ro.core.pong.gameScenes.NewGameScreen</node>
+    <node x="-505.7790453710995" y="26.580120639916117">ro.core.pong.PongGame</node>
+    <node x="623.9284156883024" y="1241.9199474161028">ro.core.pong.Utils.Sounds</node>
+    <node x="-443.62907200521477" y="1285.7590881428878">ro.core.pong.gameControls.ComputerAI</node>
+    <node x="190.50000000000006" y="432.5">ro.core.pong.graphics.GraphicDrawable</node>
+    <node x="123.00000000000006" y="777.0">ro.core.pong.graphics.GraphicObject</node>
+    <node x="-480.72871903213854" y="814.974693053087">ro.core.pong.gameControls.PlayerControlHandler</node>
+    <node x="1021.7725023068534" y="245.6101837094202">ro.core.pong.PlayerType</node>
+    <node x="-423.72871903213854" y="668.974693053087">ro.core.pong.gameControls.KeyboardEventHandler</node>
+    <node x="340.00000000000006" y="1200.071760663028">ro.core.pong.graphics.Paddle</node>
+    <node x="629.6029695495346" y="1470.7112658334033">ro.core.pong.Main</node>
+    <node x="857.5079600327517" y="1247.46923458622">ro.core.pong.Utils.GeometryUtils</node>
+    <node x="2.0487163937740434" y="1173.2179098443503">ro.core.pong.graphics.Ball</node>
+    <node x="104.0237854196348" y="1447.7197905719427">ro.core.pong.gameScenes.InGameScreen</node>
+    <node x="448.50000000000006" y="234.0">ro.core.pong.PongPlayer</node>
+    <node x="-176.70146526081408" y="671.492080341529">ro.core.pong.gameControls.InteractDirection</node>
+    <node x="626.9072164948453" y="754.7517687487366">ro.core.pong.Utils.Constants</node>
+    <node x="247.75000000000006" y="0.0">ro.core.pong.graphics.PlanarObject</node>
+    <node x="355.62692274032963" y="1446.124035182294">ro.core.pong.gameScenes.GameOverScreen</node>
+    <node x="-495.55332332641274" y="1012.001014155806">ro.core.pong.Utils.CollisionDetector</node>
+    <node x="756.25" y="22.0">ro.core.pong.gameControls.Interactable</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="ro.core.pong.gameControls.PlayerControlHandler" target="ro.core.pong.gameControls.KeyboardEventHandler">
+      <point x="0.0" y="-81.5" />
+      <point x="0.0" y="48.0" />
+    </edge>
+    <edge source="ro.core.pong.graphics.Paddle" target="ro.core.pong.graphics.GraphicObject">
+      <point x="-5.6843418860808015E-14" y="-81.5" />
+      <point x="459.0" y="1097.0" />
+      <point x="402.75000000000006" y="1097.0" />
+      <point x="93.25" y="147.5" />
+    </edge>
+    <edge source="ro.core.pong.PongPlayer" target="ro.core.pong.gameControls.Interactable">
+      <point x="138.25" y="-246.5" />
+      <point x="0.0" y="70.0" />
+    </edge>
+    <edge source="ro.core.pong.PongPlayer" target="ro.core.pong.graphics.PlanarObject">
+      <point x="-138.25" y="-246.5" />
+      <point x="586.75" y="209.0" />
+      <point x="433.00000000000006" y="209.0" />
+      <point x="61.75" y="92.0" />
+    </edge>
+    <edge source="ro.core.pong.graphics.GraphicDrawable" target="ro.core.pong.graphics.PlanarObject">
+      <point x="0.0" y="-48.0" />
+      <point x="-61.75" y="92.0" />
+    </edge>
+    <edge source="ro.core.pong.graphics.GraphicObject" target="ro.core.pong.graphics.GraphicDrawable">
+      <point x="0.0" y="-147.5" />
+      <point x="0.0" y="48.0" />
+    </edge>
+    <edge source="ro.core.pong.graphics.Ball" target="ro.core.pong.graphics.GraphicObject">
+      <point x="0.0" y="-114.5" />
+      <point x="160.0" y="1097.0" />
+      <point x="216.25000000000006" y="1097.0" />
+      <point x="-93.25" y="147.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.3881105081401086" x="1532.8109877018833" y="878.8207534380308" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Methods</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
