@@ -20,7 +20,10 @@ public class PongGame {
     {
         PLAYING, PAUSED, ENDED;
     }
-    public static final boolean USE_AI = true;
+    public enum GameType {
+        SINGLE_PLAYER, MUTIPLAYER, ONLY_AI;
+    }
+    public static final GameType mType = GameType.SINGLE_PLAYER;
 
     private final GameLoop loop = new GameLoop();
     private State mGameState = State.ENDED;
@@ -30,6 +33,7 @@ public class PongGame {
     private PlayerControlHandler mControlHandler = PlayerControlHandler.getInstance();
     private CollisionDetector mCollisionDetector = CollisionDetector.getInstance();
     private ComputerAI mComputerAI;
+    private ComputerAI mComputerAI2;
 
     private PongPlayer mPlayer = new PongPlayer(PlayerType.PLAYER_LEFT, PLAYER_PADDLE_SPEED);
     private PongPlayer mOpponent = new PongPlayer(PlayerType.PLAYER_RIGHT, PLAYER_PADDLE_SPEED);
@@ -44,11 +48,20 @@ public class PongGame {
     }
 
     private void initControlHandler() {
-        mControlHandler.addPlayer(mPlayer);
-        if(!USE_AI) {
-            mControlHandler.addPlayer(mOpponent);
-        }else {
-            mComputerAI = new ComputerAI(mOpponent, mBall);
+
+        switch (mType) {
+            case SINGLE_PLAYER:
+                mControlHandler.addPlayer(mPlayer);
+                mComputerAI = new ComputerAI(mOpponent, mBall);
+                break;
+            case MUTIPLAYER:
+                mControlHandler.addPlayer(mPlayer);
+                mControlHandler.addPlayer(mOpponent);
+                break;
+            case ONLY_AI:
+                mComputerAI = new ComputerAI(mOpponent, mBall);
+                mComputerAI2 = new ComputerAI(mPlayer, mBall);
+                break;
         }
     }
 
@@ -98,9 +111,15 @@ public class PongGame {
         mPlayer.update(deltaTime);
         mOpponent.update(deltaTime);
         mBall.update(deltaTime);
-        if(USE_AI) {
+
+        if(mComputerAI != null) {
             mComputerAI.update(deltaTime);
         }
+
+        if(mComputerAI2 != null) {
+            mComputerAI2.update(deltaTime);
+        }
+
         if(mCollisionDetector.runCollisionChecks()) {
             //reset ball on any scored goal
             launchBall();

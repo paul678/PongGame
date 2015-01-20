@@ -43,10 +43,11 @@ public class ComputerAI {
          * Find out where the ball is heading for and move in that direction (this does not look
          * ahead past collisions).
          */
-        double targetY = mBall.getY() + distanceFromPaddle * Math.tan(mBall.getAngle());
+        double targetY = mBall.getY() + distanceFromPaddle * Math.tan(mBall.getAngle()) + mBall.getHeight();
         boolean paddleOnTarget = targetY >= mPlayer.getY() && targetY + mBall.getHeight() <= mPlayer.getY() + mPlayer.getHeight();
         if (paddleOnTarget) {
             mPlayer.setMovement(InteractDirection.NONE);
+           // mPlayer.setY(mPlayer.getY() + mBall.getHeight());
         } else if (targetY < mPlayer.getY()) {
             mPlayer.setMovement(InteractDirection.UP);
         } else if (targetY > mPlayer.getY()) {

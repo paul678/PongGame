@@ -10,6 +10,7 @@ import static ro.core.pong.Utils.Constants.*;
 
 /**
  * Created by CORE on 1/12/2015.
+ *
  */
 public class InGameScreen extends Pane
 {

@@ -9,6 +9,8 @@ import static ro.core.pong.Utils.Constants.*;
 
 /**
  * Created by CORE on 1/12/2015.
+ * This is the primary screen. In this the user is informed on how to
+ * play the game.
  */
 public class NewGameScreen extends Pane {
 
